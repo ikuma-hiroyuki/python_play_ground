@@ -17,8 +17,8 @@ yesterday = today - datetime.timedelta(days=1)
 nikkei_data = yf.Ticker(NIKKEI_SYMBOL).history(start=yesterday, end=today)
 dow_data = yf.Ticker(DOW_SYMBOL).history(start=yesterday, end=today)
 
-nikkei_close_price = nikkei_data['Close'][0]
-dow_close_price = dow_data['Close'][0]
+nikkei_close_price = nikkei_data['Close'].iloc[0]
+dow_close_price = dow_data['Close'].iloc[0]
 
 # LINEに通知するメッセージを作成
 message = f"【前日の株価情報】\n日経平均株価：{nikkei_close_price}\nダウ平均株価：{dow_close_price}"
