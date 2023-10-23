@@ -108,3 +108,29 @@ print(f"{args.amount} {args.from_currency} is equal to {result} {args.to_currenc
 ```
 
 これでプログラムが正常に動作するはずです。また、取得したレートについて、正確にどの価格が使用されるかについては、yfinanceライブラリの更新状況によって変わる可能性があることに注意してください。
+
+# 補足
+
+次のレクチャー「米ヤフーファイナンスから昨日の日経平均株価とダウ平均株価を取得し LINE に通知する」で使っているyfinanceというライブラリのバージョンが撮影時点と変わりました。
+
+そのため、配付資料と動画とで一部コードの記述が違う箇所があります。
+
+
+
+正しく動作させるためには、動画内の以下のコードを
+
+```
+nikkei_close_price = nikkei_data['Close']
+dow_close_price = dow_data['Close']
+```
+
+以下のコードに修正してください。
+
+```
+nikkei_close_price = nikkei_data['Close'].iloc[0]
+dow_close_price = dow_data['Close'].iloc[0]
+```
+
+
+
+また、プログラムを実行するタイミング(株式市場が休日)でデータが取得できないためエラーになることがあります。その場合はタイミングをずらして実行してみてくださいませ。

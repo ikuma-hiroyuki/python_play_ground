@@ -48,3 +48,31 @@ requests.post(line_notify_api, headers=headers, data=payload)
 ```
 
 注意: LINE Notify APIを使用するためには、まずLINE Notifyのアカウントを作成し、トークンを取得する必要があります。
+
+
+
+# 補足
+
+次のレクチャーで使っているyfinanceというライブラリのバージョンが撮影時点と変わりました。
+
+そのため、配付資料と動画とで一部コードの記述が違う箇所があります。
+
+
+
+正しく動作させるためには、動画内の以下のコードを
+
+```
+exchange_rate = yf.Ticker(f"{args.from_currency}{args.to_currency}=X").info['regularMarketOpen']
+```
+
+
+
+以下に修正してください。
+
+```
+exchange_rate = yf.Ticker(f"{args.from_currency}{args.to_currency}=X").history(period="1d")["Close"].iloc[0]
+```
+
+
+
+また、プログラムを実行するタイミング(株式市場が休日)でデータが取得できないためエラーになることがあります。その場合はタイミングをずらして実行してみてくださいませ。
