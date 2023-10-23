@@ -9,7 +9,7 @@ parser.add_argument('amount', type=float, help='Amount to convert')
 args = parser.parse_args()
 
 # 為替レートを取得する
-exchange_rate = yf.Ticker(f"{args.from_currency}{args.to_currency}=X").info['regularMarketOpen']
+exchange_rate = yf.Ticker(f"{args.from_currency}{args.to_currency}=X").history(period="1d")["Close"].iloc[0]
 
 # 両替を行う
 result = args.amount * exchange_rate
