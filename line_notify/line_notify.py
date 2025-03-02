@@ -13,6 +13,9 @@ DOW_SYMBOL = "^DJI"
 today = datetime.date.today()
 yesterday = today - datetime.timedelta(days=1)
 
+# 上の為替取得コードで取得できない場合は、以下のコードを使って取得してください。 (下の行の先頭の # を削除する)
+# yesterday = today - datetime.timedelta(days=7)
+
 # yfinanceを使用して前日の日経平均株価とダウ平均株価の終値を取得
 nikkei_data = yf.Ticker(NIKKEI_SYMBOL).history(start=yesterday, end=today)
 dow_data = yf.Ticker(DOW_SYMBOL).history(start=yesterday, end=today)
