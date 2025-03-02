@@ -33,6 +33,9 @@ args = parser.parse_args()
 # 為替レートを取得する
 exchange_rate = yf.Ticker(f"{args.from_currency}{args.to_currency}=X").history(period="1d")["Close"].iloc[0]
 
+# 上の為替取得コードで取得できない場合は、以下のコードを使って取得してください。 (下の行の先頭の # を削除する)
+# exchange_rate = yf.Ticker(f"{args.from_currency}{args.to_currency}=X").history()["Close"].iloc[0]
+
 # 両替を行う
 result = args.amount * exchange_rate
 
